@@ -23,7 +23,7 @@ export const metadata = {
     siteName: 'LaunchSite',
     images: [
       {
-        url: '/images/logonew.png', // Place in public/images/
+        url: '/images/logo.jpg', // Place in public/images/
         width: 1200,
         height: 630,
         alt: 'LaunchSite Preview',
