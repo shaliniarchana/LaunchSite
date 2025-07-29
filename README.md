@@ -35,7 +35,7 @@ Welcome to **LaunchSite**, your ultimate platform to **sell and showcase** custo
 ## 🖼️ Product Previews
 
 <div align="center">
-  <img src="./public/images/1.png" width="300" alt="Product 1" />
+  <img src="./public/images/top.png" width="300" alt="Product 1" />
   <img src="./public/images/one.png" width="300" alt="Product 2" />
 </div>
 
