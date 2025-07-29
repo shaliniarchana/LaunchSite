@@ -82,3 +82,34 @@ body {
   animation: blue-burning 3.5s infinite ease-in-out;
 }
 
+@keyframes mobileGlowBounce {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+  }
+  50% {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
+  }
+}
+
+@keyframes shimmerGlow {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-mobile-glow-bounce {
+  animation: mobileGlowBounce 2s ease-in-out infinite;
+}
+
+.animate-shimmer-glow {
+  background: linear-gradient(270deg, #0ff, #00f, #0ff);
+  background-size: 400% 100%;
+  animation: shimmerGlow 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

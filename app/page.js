@@ -201,14 +201,23 @@ const [showProducts, setShowProducts] = useState(false);
         {/* === CTA BUTTON === */}
         <div className="text-center mt-20 relative">
           <Link href="/products/web">
-            <motion.button
-              whileHover={{ scale: 1.1, rotate: [0, 5, -5, 0] }}
-              transition={{ duration: 0.5 }}
-              className="relative bg-gradient-to-r from-blue-700 via-cyan-500 to-blue-700 text-white text-xl md:text-2xl font-bold py-3 px-6 md:py-4 md:px-8 rounded-full shadow-2xl ring-2 ring-cyan-400 hover:ring-4 hover:shadow-cyan-500/50 transition z-10 animate-glow"
-            >
-              💼 Buy LaunchSite Premium Software Now
-            </motion.button>
-          </Link>
+         <motion.button
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, ease: "easeOut" }}
+  whileHover={{ scale: 1.1, rotate: [0, 5, -5, 0] }}
+  whileTap={{ scale: 0.95 }}
+  className="relative w-[90%] max-w-xs md:w-auto mx-auto
+             text-sm px-4 py-2 sm:text-base sm:px-5 sm:py-3 md:text-xl md:px-6 md:py-4
+             font-bold bg-gradient-to-r from-blue-700 via-cyan-500 to-blue-700 text-white
+             rounded-full shadow-2xl ring-2 ring-cyan-400 hover:ring-4 hover:shadow-cyan-500/50
+             transition z-10 md:animate-none animate-mobile-glow-bounce text-center"
+>
+  💼 Buy LaunchSite <br className="block md:hidden" /> Premium Software Now
+</motion.button>
+
+
+</Link>
         </div>
 
         {/* === FOOTER === */}

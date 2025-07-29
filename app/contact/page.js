@@ -104,7 +104,8 @@ const [showMobileProducts, setShowMobileProducts] = useState(false);
   </div>
 </header>
 {menuOpen && (
-  <div className="md:hidden absolute top-[72px] left-0 w-full bg-black border-t border-blue-600 z-40 px-6 py-6 flex flex-col items-center space-y-4 text-white text-lg">
+<div className="md:hidden fixed top-[72px] left-0 w-full bg-black border-t border-blue-600 z-40 px-6 py-6 flex flex-col items-center space-y-4 text-white text-lg max-h-[calc(100vh-72px)] overflow-y-auto">
+
     <Link href="/" onClick={() => setMenuOpen(false)} className="hover:text-blue-400">Home</Link>
     <Link href="/about" onClick={() => setMenuOpen(false)} className="hover:text-blue-400">About</Link>
 
@@ -143,11 +144,11 @@ const [showMobileProducts, setShowMobileProducts] = useState(false);
        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
 
             {[{
-              icon: <FaUser />, text: 'Shalini Archana'
+              icon: <FaUser />, text: 'Shalini Archana',link: '/portfolio/page.html'
             }, {
-              icon: <FaPhone />, text: '072 274 7647'
+              icon: <FaPhone />, text: '072 274 7647', link: 'tel:+94722747647'
             }, {
-              icon: <FaEnvelope />, text: 'sliitshalini@gmail.com'
+              icon: <FaEnvelope />, text: 'sliitshalini@gmail.com', link: 'https://mail.google.com/mail/?view=cm&fs=1&to=sliitshalini@gmail.com'
             }, {
               icon: <FaGithub />, text: 'GitHub', link: 'https://github.com/shaliniarchana'
             }, {
@@ -172,11 +173,20 @@ const [showMobileProducts, setShowMobileProducts] = useState(false);
           </div>
 
          <div className="flex justify-center pb-20 sm:pb-0">
+           
   <motion.button
-    whileHover={{ scale: 1.1 }}
-    whileTap={{ scale: 0.95 }}
+    initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, ease: "easeOut" }}
+  whileHover={{ scale: 1.1, rotate: [0, 5, -5, 0] }}
+  whileTap={{ scale: 0.95 }}
+  className="relative w-[90%] max-w-xs md:w-auto mx-auto
+             text-sm px-4 py-2 sm:text-base sm:px-5 sm:py-3 md:text-xl md:px-6 md:py-4
+             font-bold bg-gradient-to-r from-blue-700 via-cyan-500 to-blue-700 text-white
+             rounded-full shadow-2xl ring-2 ring-cyan-400 hover:ring-4 hover:shadow-cyan-500/50
+             transition z-10 md:animate-none animate-mobile-glow-bounce text-center"
     onClick={() => setShowForm(!showForm)}
-    className="bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-bold py-3 px-6 sm:px-8 rounded-full shadow-xl hover:shadow-cyan-600 transition-all duration-300"
+    
   >
     {showForm ? 'Hide' : 'Open'} Contact Form
   </motion.button>

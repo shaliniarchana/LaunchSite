@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Slider from 'react-slick';
 import Link from 'next/link';
+import { FaSearch } from 'react-icons/fa';
 import { HiMenu, HiX } from 'react-icons/hi';
 
 import 'slick-carousel/slick/slick.css';
@@ -14,22 +15,33 @@ const mobileApps = [
   /*
   {
     id: 1,
-    title: 'ERP Manager Pro',
-    images: ['/images/1.png', '/images/2.png'],
-    tech: ['Next.js', 'PostgreSQL', 'TailwindCSS'],
-    link: '#',
+    title: 'LiftMetric',
+    images: [
+      '/images/3.png',
+      '/images/1.png',
+      '/images/2.png',
+    ],
+    tech: ['Next.js', 'React', 'TailwindCSS', 'Firebase'],
+    link: 'https://lift-metric-pro-weightlifting-scori.vercel.app/',
   },
   */
+ 
 ];
 
-export default function MobileAppPage() {
+export default function MobileAppsPage() {
   const [search, setSearch] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const [showMobileProducts, setShowMobileProducts] = useState(false);
 
-  const filteredApps = mobileApps.filter((app) =>
-    app.title.toLowerCase().includes(search.toLowerCase())
+  const filteredApps = mobileApps.filter((app) => {
+  const query = search.toLowerCase();
+  return (
+      app.title.toLowerCase().includes(query) ||
+  app.tech.some((tech) => tech.toLowerCase().includes(query)) ||
+  app.category?.toLowerCase().includes(query) ||
+  app.description?.toLowerCase().includes(query)
   );
+});
 
   const sliderSettings = {
     dots: true,
@@ -70,15 +82,21 @@ export default function MobileAppPage() {
             <nav className="hidden md:flex space-x-6 text-white font-medium">
               <Link href="/" className="hover:text-cyan-400 transition-all duration-300 hover:scale-110">Home</Link>
               <Link href="/about" className="hover:text-cyan-400 transition-all duration-300 hover:scale-110">About</Link>
-              <div className="group relative">
-                <button className="hover:text-cyan-400 transition-all duration-300 hover:scale-110">Products ▾</button>
-                <ul className="absolute bg-black shadow-2xl rounded-xl mt-2 z-50 group-hover:block hidden">
-                  <li><Link href="/products/web" className="block px-4 py-2 hover:bg-blue-800">Web Apps</Link></li>
-                  <li><Link href="/products/mobile" className="block px-4 py-2 hover:bg-blue-800">Mobile Apps</Link></li>
-                  <li><Link href="/products/systems" className="block px-4 py-2 hover:bg-blue-800">Systems</Link></li>
-                  <li><Link href="/products/enterprise" className="block px-4 py-2 hover:bg-blue-800">Enterprise Solutions</Link></li>
-                </ul>
-              </div>
+              <div className="relative group">
+  <div className="hover:text-cyan-400 transition-all duration-300 hover:scale-110 cursor-pointer">
+    Products ▾
+  </div>
+
+  <div className="absolute left-0 mt-2 bg-black shadow-2xl rounded-xl z-50 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200">
+    <ul className="py-2 pointer-events-auto">
+      <li><Link href="/products/web" className="block px-4 py-2 hover:bg-blue-800 whitespace-nowrap">Web Apps</Link></li>
+      <li><Link href="/products/mobile" className="block px-4 py-2 hover:bg-blue-800 whitespace-nowrap">Mobile Apps</Link></li>
+      <li><Link href="/products/systems" className="block px-4 py-2 hover:bg-blue-800 whitespace-nowrap">Systems</Link></li>
+      <li><Link href="/products/enterprise" className="block px-4 py-2 hover:bg-blue-800 whitespace-nowrap">Enterprise Solutions</Link></li>
+    </ul>
+  </div>
+</div>
+
               <Link href="/contact" className="hover:text-cyan-400 transition-all duration-300 hover:scale-110">Contact</Link>
             </nav>
           </div>
@@ -88,7 +106,8 @@ export default function MobileAppPage() {
   
 </header>
 {menuOpen && (
-  <div className="md:hidden absolute top-[72px] left-0 w-full bg-black border-t border-blue-600 z-40 px-6 py-6 flex flex-col items-center space-y-4 text-white text-lg">
+ <div className="md:hidden fixed top-[72px] left-0 w-full bg-black border-t border-blue-600 z-40 px-6 py-6 flex flex-col items-center space-y-4 text-white text-lg max-h-[calc(100vh-72px)] overflow-y-auto">
+
     <Link href="/" onClick={() => setMenuOpen(false)} className="hover:text-blue-400">Home</Link>
     <Link href="/about" onClick={() => setMenuOpen(false)} className="hover:text-blue-400">About</Link>
 
@@ -121,19 +140,21 @@ export default function MobileAppPage() {
             transition={{ duration: 1 }}
             className="text-3xl sm:text-4xl md:text-5xl text-center font-extrabold text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-300 bg-clip-text animate-pulse mb-12"
           >
-             Mobile Apps Showcase
+            ⚙️ Mobile Apps Showcase
           </motion.h1>
 
           {/* Search Bar */}
-          <div className="mb-10 text-center">
-            <input
-              type="text"
-              placeholder="Search mobile apps..."
-              className="w-full md:w-1/2 px-4 py-3 text-white bg-blue-950 border border-cyan-500 rounded-lg focus:outline-none shadow-lg hover:ring-2 hover:ring-cyan-400 transition"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
+          <div className="flex justify-center items-center w-full md:w-1/2 mx-auto relative pb-6">
+  <input
+    type="text"
+    placeholder="Search Mobile Apps using any key..."
+    className="w-full px-4 py-3 pr-10 text-white bg-blue-950 border border-cyan-500 rounded-lg focus:outline-none shadow-lg hover:ring-2 hover:ring-cyan-400 transition placeholder-white"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
+  <FaSearch className="absolute right-3 text-white pointer-events-none" />
+</div>
+
 
           {/* Software Grid */}
           <div className="min-h-[400px] mb-24">
@@ -144,23 +165,26 @@ export default function MobileAppPage() {
                     key={app.id}
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.6 }}
-                    className="bg-gradient-to-br from-blue-950 to-black border border-cyan-500 rounded-2xl p-6 shadow-2xl hover:shadow-cyan-400/40"
+                     className="bg-gradient-to-br from-blue-950 to-black border border-cyan-500 rounded-2xl p-6 shadow-2xl hover:shadow-cyan-400/40 animate-blue-burning"
                   >
-                    <div className="w-full h-[200px] sm:h-[300px] rounded-lg overflow-hidden border-4 border-cyan-700 shadow-lg mb-4">
-                      <Slider {...sliderSettings}>
-                        {app.images.map((img, idx) => (
-                          <div key={idx} className="flex items-center justify-center w-full h-full bg-black">
-                            <Image
-                              src={img}
-                              alt={`${app.title} ${idx + 1}`}
-                              width={640}
-                              height={360}
-                              className="max-h-full max-w-full object-contain rounded-lg"
-                            />
-                          </div>
-                        ))}
-                      </Slider>
-                    </div>
+               <div className="w-full h-[160px] sm:h-[220px] rounded-lg overflow-hidden border-2 border-cyan-700 shadow-md mb-4">
+  <Slider {...sliderSettings}>
+    {app.images.map((img, idx) => (
+      <div key={idx} className="w-full h-full bg-black flex items-center justify-center">
+        <Image
+          src={img}
+          alt={`${app.title} ${idx + 1}`}
+          width={1000}     // Set image to smaller size
+          height={130}
+       className="object-contain pt-2"
+
+           
+        />
+      </div>
+    ))}
+  </Slider>
+</div>
+
 
                     <h2 className="text-xl md:text-2xl font-bold text-cyan-300 mb-3">{app.title}</h2>
 
