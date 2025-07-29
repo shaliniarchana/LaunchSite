@@ -37,8 +37,8 @@ Welcome to **LaunchSite**, your ultimate platform to **sell and showcase** custo
 </div>
 
 <div align="center" style="margin-top: 20px;">
-  <img src="./public/images/3.png" width="300" alt="Product 3" />
-  <img src="./public/images/4.png" width="300" alt="Product 4" />
+  <img src="./public/images/two.png" width="300" alt="Product 3" />
+  <img src="./public/images/four.png" width="300" alt="Product 4" />
 </div>
 
 
